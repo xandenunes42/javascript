@@ -48,7 +48,7 @@
     <script>
 
       // Your JavaScript goes here
-        var numRandom = Math.floor(Math.random() * 100) + 1;
+        var numRandom = Math.floor(Math.random() * 10) + 1;
 
         var guesses = document.querySelector(".guesses");
         var lastResult = document.querySelector(".lastResult");
@@ -59,6 +59,46 @@
 
         var countGuesses = 1;
         var buttonReset;
+
+        function checkGuess()
+        {
+            var guessUser = Number(guessField.value);
+
+            if(countGuesses === 1)
+            {
+                guesses.textContent = "Palpites anteriores: ";
+            }
+            
+                guesses.textContent += guessUser + " ";
+
+            if(guessField === numRandom)
+            {
+                lastResult.textContent = "Parabens !!! Voce venceu !";
+                lastResult.style.backgroundcolor = "green";
+                lowOrHi.textContent = "";
+            } else if(countGuesses === 10) 
+            {
+                lastResult.textContent = "FIM DE JOGO !!! Voce Perdeu !"
+                lowOrHi.textContent = "";
+            } else 
+            {
+                lastResult.textContent = "Errado !";
+                lastResult.style.backgroundcolor = "red";
+
+                if(guessUser > numRandom)
+                {
+                    lowOrHi.textContent = "Mais baixo";        
+                } else if (guessUser < numRandom)
+                {
+                    lowOrHi.textContent = "Mais alto";
+                }
+            }
+
+            countGuesses++;
+            guessField.value = "";
+        }
+
+        guessSubmit.addEventListener("click", checkGuess);
 
 
     </script>
