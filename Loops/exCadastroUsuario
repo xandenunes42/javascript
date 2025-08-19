@@ -1,0 +1,50 @@
+let user = [];
+
+let sair = true;
+
+do
+{
+    op = prompt("O que deseja fazer ?\n1 - Exibir o primeiro contato\n2 - Exibir o ultimo contato\n3 - Exibir todos os contatos\n4 - Adicionar novo contato\n5 - Sair do programa");
+
+    op = Number(op);
+
+    if(op == 5)
+    {
+        break;
+    } else 
+    {
+        switch(op)
+        {
+            case 1:
+                console.log(`Primeiro Usuario:\nNome: ${user[0].name}\nEmail: ${user[0].email}`);
+                break;
+            
+            case 2:
+                console.log(`Ultimo Usuario:\nNome: ${user[user.length-1].name}\nEmail: ${user[user.length-1].email}`);
+                break;
+
+            case 3:
+                for(key of user)
+                {
+                    console.log(`Todos os usuarios:\nNome: ${key.name}\nEmail: ${key.email}`);
+                }
+
+                break;
+
+            case 4:
+                let inputName = prompt("Informe o nome: ");
+                let inputEmail = prompt("Informe o email: ");
+
+                user.push({
+                    name : inputName,
+                    email : inputEmail
+                });
+
+                console.log("Usuario cadastrado com sucesso!!!");
+                
+                break;
+        }
+    }
+
+}while(sair);
+
